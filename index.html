@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PatternMaster | Domina los Patrones de Diseño</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-animation"></div>
+
+    <main class="app-container">
+        <!-- Hero Section -->
+        <section id="hero" class="screen active">
+            <header class="hero-header">
+                <h1 class="glitch-text" data-text="PatternMaster">PatternMaster</h1>
+                <p class="subtitle">Domina la arquitectura de software jugando</p>
+            </header>
+
+            <div class="game-modes">
+                <div class="card game-card" onclick="app.startGame('architect')">
+                    <div class="card-icon">🏗️</div>
+                    <h2>El Arquitecto</h2>
+                    <p>Resuelve escenarios complejos eligiendo el patrón correcto.</p>
+                    <button class="btn-primary">Jugar Ahora</button>
+                </div>
+
+                <div class="card game-card" onclick="app.startGame('memory')">
+                    <div class="card-icon">🧠</div>
+                    <h2>Pattern Memory</h2>
+                    <p>Entrena tu memoria visual emparejando patrones.</p>
+                    <button class="btn-primary">Jugar Ahora</button>
+                </div>
+
+                <div class="card game-card" onclick="app.startGame('rush')">
+                    <div class="card-icon">⚡</div>
+                    <h2>Refactor Rush</h2>
+                    <p>Destruye bugs con el patrón correcto antes del crash.</p>
+                    <button class="btn-primary">Jugar Ahora</button>
+                </div>
+
+                <div class="card game-card" onclick="app.startGame('sprint')">
+                    <div class="card-icon">⏱️</div>
+                    <h2>Design Sprint</h2>
+                    <p>Contrarreloj: ¿Cuántos patrones conoces?</p>
+                    <button class="btn-primary">Jugar Ahora</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Interface: The Architect -->
+        <section id="game-architect" class="screen hidden">
+            <div class="game-header">
+                <button class="btn-back" onclick="app.goHome()">← Salir</button>
+                <div class="score-board">Puntos: <span id="architect-score">0</span></div>
+            </div>
+
+            <div class="question-container">
+                <div class="progress-bar">
+                    <div id="architect-progress"></div>
+                </div>
+                <h3 id="scenario-title">Escenario #1</h3>
+                <p id="scenario-description" class="scenario-text">Cargando escenario...</p>
+
+                <div id="options-grid" class="options-grid">
+                    <!-- Options injected by JS -->
+                </div>
+            </div>
+
+            <div id="feedback-modal" class="modal hidden">
+                <div class="modal-content">
+                    <h2 id="feedback-title">¡Correcto!</h2>
+                    <p id="feedback-message">Excelente elección.</p>
+                    <button id="next-btn" class="btn-primary">Siguiente</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Interface: Memory -->
+        <section id="game-memory" class="screen hidden">
+            <div class="game-header">
+                <button class="btn-back" onclick="app.goHome()">← Salir</button>
+                <div class="score-board">Movimientos: <span id="memory-moves">0</span></div>
+            </div>
+
+            <div class="memory-board" id="memory-board">
+                <!-- Cards injected by JS -->
+            </div>
+        </section>
+
+        <!-- Game Interface: Refactor Rush -->
+        <section id="game-rush" class="screen hidden">
+            <div class="game-header">
+                <button class="btn-back" onclick="app.goHome()">← Salir</button>
+                <div class="score-board">Score: <span id="rush-score">0</span> | Lives: <span
+                        id="rush-lives">❤️❤️❤️</span></div>
+            </div>
+            <div class="rush-container">
+                <div id="rush-play-area" class="rush-play-area">
+                    <!-- Falling enemies injected here -->
+                </div>
+                <div class="rush-controls">
+                    <button class="rush-btn" data-pattern="Singleton"
+                        onclick="app.handleRushInput('Singleton')">Singleton (Q)</button>
+                    <button class="rush-btn" data-pattern="Observer" onclick="app.handleRushInput('Observer')">Observer
+                        (W)</button>
+                    <button class="rush-btn" data-pattern="Factory" onclick="app.handleRushInput('Factory')">Factory
+                        (E)</button>
+                    <button class="rush-btn" data-pattern="Strategy" onclick="app.handleRushInput('Strategy')">Strategy
+                        (R)</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Interface: Design Sprint -->
+        <section id="game-sprint" class="screen hidden">
+            <div class="game-header">
+                <button class="btn-back" onclick="app.goHome()">← Salir</button>
+                <div class="score-board">
+                    <span id="sprint-timer" class="timer">60s</span> |
+                    Score: <span id="sprint-score">0</span>
+                </div>
+            </div>
+            <div class="sprint-container">
+                <div class="sprint-streak hidden" id="sprint-streak">🔥 RACHA x<span id="streak-count">0</span></div>
+                <h3 id="sprint-question">Pregunta Rápida</h3>
+                <div id="sprint-options" class="sprint-options">
+                    <!-- Options injected here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
